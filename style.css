@@ -21,6 +21,13 @@ body {
     margin: auto;
     margin-bottom: 10px;
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sadržajEkrana {
+    font-size: 30px;
 }
 
 .container_tipke {
