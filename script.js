@@ -2,21 +2,30 @@ const tipka = document.querySelectorAll('.tipka');
 let sadržajEkrana = document.querySelector('.sadržajEkrana');
 
 let firstandSecondNum = [];
+
 let operator;
 
 const mathOperations = {
-    add: (num1, num2) => num1 + num2,
-    subtract: (num1, num2) => num1 - num2,
-    multiply: (num1, num2) => num1 * num2,
-    divide: (num1, num2) => num1 / num2
+    add: (...numbers) => numbers.reduce((acumulator, currentValue) => {
+        return acumulator + currentValue;
+    }),
+    subtract: (...numbers) => numbers.reduce((acumulator, currentValue) => {
+        return acumulator - currentValue;
+    }),
+    multiply: (...numbers) => numbers.reduce((acumulator, currentValue) => {
+        return acumulator * currentValue;
+    }),
+    divide: (...numbers) => numbers.reduce((acumulator, currentValue) => {
+        return acumulator / currentValue;
+    })
 };
 
 
-function operate(operator, num1, num2) {
-    if (operator === "+") return mathOperations.add(num1, num2);
-    else if (operator === "-") return mathOperations.subtract(num1, num2);
-    else if (operator === "*") return mathOperations.multiply(num1, num2);
-    else if (operator === "/") return mathOperations.divide(num1, num2);
+function operate(operator, ...numbers) {
+    if (operator === "+") return mathOperations.add(...numbers);
+    else if (operator === "-") return mathOperations.subtract(...numbers);
+    else if (operator === "*") return mathOperations.multiply(...numbers);
+    else if (operator === "/") return mathOperations.divide(...numbers);
 }
 
 function getNumberFromDisplay(pozicija) {
@@ -54,7 +63,7 @@ tipka.forEach(function (tipka) {
 
         if (e.target.dataset.value == "=") {
             getNumberFromDisplay(1);
-            const result = operate(operator, firstandSecondNum[0], firstandSecondNum[1]);
+             result = operate(operator, firstandSecondNum[0], firstandSecondNum[1]);
             populateDisplay(result);
         }
 
