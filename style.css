@@ -3,11 +3,12 @@
 }
 
 body {
-    background-color: rgb(214, 213, 213);
+    background-color: rgb(243, 213, 213);
 }
 
 .container {
     display: flex;
+    flex: 0 0 auto;
     flex-direction: column;
     width: 50%;
     background: none;
@@ -17,11 +18,12 @@ body {
 .ekran {
     width: 50%;
     height: 200px;
-    background: white;
+    background: rgb(182, 179, 179);
     margin: auto;
     margin-bottom: 10px;
     border: 1px solid black;
     display: flex;
+    flex: 0 0 auto;
     justify-content: center;
     align-items: center;
 }
@@ -34,12 +36,14 @@ body {
     margin: auto;
     width: 50%;
     display: flex;
+    flex: 0 0 auto;
     flex-direction: column;
     gap: 5px;
 }
 
 .redak {
     display: flex;
+    flex: 0 0 auto;
     gap: 5px;
     justify-content: space-between;
 }
@@ -56,6 +60,7 @@ body {
 
 .clr {
     display: flex;
+    flex: 0 0 auto;
     justify-content: center;
     align-items: center;
     text-align: center;
