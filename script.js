@@ -34,19 +34,19 @@ function getNumberFromDisplay(operator) {
     const numericValue = textContentDisplay.match(/\d+(\.\d+)?/g).map(Number);
     console.log(numericValue);
     console.log(operator);
-   numbers = numericValue.reduce((accumulator, currentValue) => {
-    if (operator === "+") {
-      return accumulator + currentValue;
-    } else if (operator === "-") {
-      return accumulator - currentValue;
-    } else if (operator === "*") {
-      return accumulator * currentValue;
-    } else if (operator === "/") {
-      return accumulator / currentValue;
-    }
-  });
-   console.log(numbers);
-   
+    numbers = numericValue.reduce((accumulator, currentValue) => {
+        if (operator === "+") {
+            return accumulator + currentValue;
+        } else if (operator === "-") {
+            return accumulator - currentValue;
+        } else if (operator === "*") {
+            return accumulator * currentValue;
+        } else if (operator === "/") {
+            return accumulator / currentValue;
+        }
+    });
+    console.log(numbers);
+
 }
 
 tipka.forEach(function (tipka) {
