@@ -33,15 +33,6 @@ function getNumberFromDisplay() {
     const textContentDisplay = sadržajEkrana.textContent;
     const numericValue = textContentDisplay.match(/\d+(\.\d+)?/g).map(Number);
     console.log(numericValue);
-    /*
-    // pretvoreni broj koji je u array stavi u postojeci array 
-    for(let i = 0; i < numericValue.length; i++) {
-        if (numbers[i] === undefined) {
-            numbers[i].push(numericValue[i]);
-        } 
-        
-    }
-    */
    numbers = numericValue.reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
    },0)
@@ -76,8 +67,7 @@ tipka.forEach(function (tipka) {
 
         if (e.target.dataset.value == "=") {
             getNumberFromDisplay(1);
-             result = operate(operator, firstandSecondNum[0], firstandSecondNum[1]);
-            populateDisplay(result);
+            sadržajEkrana.textContent += numbers;
         }
 
     })
