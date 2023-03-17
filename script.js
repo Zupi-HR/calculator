@@ -1,7 +1,7 @@
 const tipka = document.querySelectorAll('.tipka');
 let sadržajEkrana = document.querySelector('.sadržajEkrana');
 
-let firstandSecondNum = [];
+let numbers = [];
 
 let operator;
 
@@ -28,12 +28,25 @@ function operate(operator, ...numbers) {
     else if (operator === "/") return mathOperations.divide(...numbers);
 }
 
-function getNumberFromDisplay(pozicija) {
+function getNumberFromDisplay() {
     // uzmi tekst s display, ukloni bilo šta osim brojeva i pretvori u number pa stavi u array
     const textContentDisplay = sadržajEkrana.textContent;
     const numericValue = textContentDisplay.match(/\d+(\.\d+)?/g).map(Number);
-    // pretvoreni broj koji je u array stavi u postojeci array s pozicije 
-    firstandSecondNum.push(numericValue[pozicija]);
+    console.log(numericValue);
+    /*
+    // pretvoreni broj koji je u array stavi u postojeci array 
+    for(let i = 0; i < numericValue.length; i++) {
+        if (numbers[i] === undefined) {
+            numbers[i].push(numericValue[i]);
+        } 
+        
+    }
+    */
+   numbers = numericValue.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+   },0)
+   console.log(numbers);
+   
 }
 
 tipka.forEach(function (tipka) {
@@ -42,7 +55,7 @@ tipka.forEach(function (tipka) {
         populateDisplay(btnValue);
         if (e.target.dataset.value == "+") {
             operator = '+';
-            getNumberFromDisplay(0);
+            getNumberFromDisplay();
         }
 
         else if (e.target.dataset.value == "-") {
@@ -73,6 +86,5 @@ tipka.forEach(function (tipka) {
 function populateDisplay(sadržaj) {
     sadržajEkrana.textContent += sadržaj;
 }
-
 
 
