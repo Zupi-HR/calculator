@@ -28,14 +28,23 @@ function operate(operator, ...numbers) {
     else if (operator === "/") return mathOperations.divide(...numbers);
 }
 
-function getNumberFromDisplay() {
+function getNumberFromDisplay(operator) {
     // uzmi tekst s display, ukloni bilo šta osim brojeva i pretvori u number pa stavi u array
     const textContentDisplay = sadržajEkrana.textContent;
     const numericValue = textContentDisplay.match(/\d+(\.\d+)?/g).map(Number);
     console.log(numericValue);
+    console.log(operator);
    numbers = numericValue.reduce((accumulator, currentValue) => {
+    if (operator === "+") {
       return accumulator + currentValue;
-   },0)
+    } else if (operator === "-") {
+      return accumulator - currentValue;
+    } else if (operator === "*") {
+      return accumulator * currentValue;
+    } else if (operator === "/") {
+      return accumulator / currentValue;
+    }
+  });
    console.log(numbers);
    
 }
@@ -46,27 +55,27 @@ tipka.forEach(function (tipka) {
         populateDisplay(btnValue);
         if (e.target.dataset.value == "+") {
             operator = '+';
-            getNumberFromDisplay();
+            getNumberFromDisplay(operator);
         }
 
         else if (e.target.dataset.value == "-") {
             operator = '-';
-            getNumberFromDisplay(0);
+            getNumberFromDisplay(operator);
 
         }
 
         else if (e.target.dataset.value == "*") {
             operator = '*';
-            getNumberFromDisplay(0);
+            getNumberFromDisplay();
         }
 
         else if (e.target.dataset.value == '/') {
             operator = '/';
-            getNumberFromDisplay(0);
+            getNumberFromDisplay();
         }
 
         if (e.target.dataset.value == "=") {
-            getNumberFromDisplay(1);
+            getNumberFromDisplay(operator);
             sadržajEkrana.textContent += numbers;
         }
 
@@ -76,5 +85,4 @@ tipka.forEach(function (tipka) {
 function populateDisplay(sadržaj) {
     sadržajEkrana.textContent += sadržaj;
 }
-
 
