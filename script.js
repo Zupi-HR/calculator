@@ -4,8 +4,10 @@ const tipke = document.querySelectorAll('.tipka');
 let displayValue = '';
 
 let firstNumber;
-let operator;
 let secondNumber;
+let sum = 0;
+let operator;
+
 
 function add(num1, num2) {
     return num1 + num2;
@@ -42,7 +44,7 @@ function operate(operator, num1, num2) {
 
 
 function populateDisplay(value) {
-    sadržajEkrana.textContent += value;
+    sadržajEkrana.textContent += value.replace(/\D/g, '');
 
 }
 
@@ -59,20 +61,27 @@ tipke.forEach((tipka) => {
             e.target.id == '-' ||
             e.target.id == '*' ||
             e.target.id == '/') {
-            operator = e.target.id;
-            firstNumber = +displayValue;
-            displayValue = '';
+            operator = e.target.id
+            if (!firstNumber) {
+                firstNumber = +displayValue;
+                console.log(firstNumber);
+                sadržajEkrana.textContent = "";
+                displayValue = '';
+            } else {
+                secondNumber = +displayValue;
+                console.log(secondNumber);
+                sadržajEkrana.textContent = "";
+                displayValue = '';
+            }
+            if (firstNumber && secondNumber) {
+                sum = firstNumber + secondNumber;
+                sadržajEkrana.textContent = sum;
+            }
+            
+           // console.log(sum);
         }
+        
 
-        if (e.target.id == '=') {
-            secondNumber = +displayValue;
-            displayValue = '';
-            console.log(firstNumber, secondNumber);
-            const result = operate(operator, firstNumber, secondNumber);
-            console.log(result);
-            populateDisplay(result);
-
-        }
     })
 })
 
