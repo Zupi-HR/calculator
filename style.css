@@ -37,6 +37,10 @@ body {
 .sadržajEkrana {
     font-size: 30px;
 }
+.finalni-rezultat {
+    align-self: center;
+    font-size: 40px;
+}
 
 .container_tipke {
     margin: auto;
