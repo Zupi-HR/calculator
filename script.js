@@ -1,5 +1,6 @@
 const sadržajEkrana = document.querySelector('.sadržajEkrana');
 const tipke = document.querySelectorAll('.tipka');
+const rezultat = document.querySelector('.rezultat');
 
 let displayValue = '';
 
@@ -67,18 +68,30 @@ tipke.forEach((tipka) => {
                 sadržajEkrana.textContent = "";
                 displayValue = '';
                 operator = e.target.id;
+                console.log(operator);
             } else {
+                const lokalnioperator = e.target.id;
+                console.log(lokalnioperator);
                 secondNumber = +displayValue;
                 console.log(secondNumber);
+                sum = operate(operator, firstNumber, secondNumber);
+                operator = lokalnioperator;
+                console.log(operator);
+                sadržajEkrana.textContent = sum;
+                rezultat.textContent = `Rezultat je: ${sum}`;
+                firstNumber = sum;
+
                 sadržajEkrana.textContent = "";
                 displayValue = '';
-                sum = operate(operator, firstNumber, secondNumber);
-            sadržajEkrana.textContent = sum;
             }
-           
-           // console.log(sum);
+
+            
+
+
+
+            // console.log(sum);
         }
-        
+
 
     })
 })

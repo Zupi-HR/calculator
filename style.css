@@ -23,9 +23,15 @@ body {
     margin-bottom: 10px;
     border: 1px solid black;
     display: flex;
+    flex-direction: column;
     flex: 0 0 auto;
     justify-content: center;
     align-items: center;
+}
+
+.rezultat {
+    font-size: 30px;
+    color: green;
 }
 
 .sadržajEkrana {
