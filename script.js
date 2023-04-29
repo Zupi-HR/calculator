@@ -5,7 +5,7 @@ let displayValue = '';
 
 let firstNumber;
 let secondNumber;
-let sum = 0;
+let sum;
 let operator;
 
 
@@ -61,30 +61,27 @@ tipke.forEach((tipka) => {
             e.target.id == '-' ||
             e.target.id == '*' ||
             e.target.id == '/') {
-            operator = e.target.id
             if (!firstNumber) {
                 firstNumber = +displayValue;
                 console.log(firstNumber);
                 sadržajEkrana.textContent = "";
                 displayValue = '';
+                operator = e.target.id;
             } else {
                 secondNumber = +displayValue;
                 console.log(secondNumber);
                 sadržajEkrana.textContent = "";
                 displayValue = '';
+                sum = operate(operator, firstNumber, secondNumber);
+            sadržajEkrana.textContent = sum;
             }
-            if (firstNumber && secondNumber) {
-                sum = firstNumber + secondNumber;
-                sadržajEkrana.textContent = sum;
-            }
-            
+           
            // console.log(sum);
         }
         
 
     })
 })
-
 
 
 
