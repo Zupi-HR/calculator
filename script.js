@@ -1,8 +1,8 @@
 const ekran = document.querySelector('.ekran');
-const sadržajEkrana = document.querySelector('.sadržajEkrana');
+let sadržajEkrana = document.querySelector('.sadržajEkrana');
 const tipke = document.querySelectorAll('.tipka');
-const rezultat = document.querySelector('.rezultat');
-const finalniRezultat = document.querySelector('.finalni-rezultat');
+let rezultat = document.querySelector('.rezultat');
+let finalniRezultat = document.querySelector('.finalni-rezultat');
 
 let displayValue = '';
 
@@ -60,7 +60,20 @@ tipke.forEach((tipka) => {
     tipka.addEventListener('click', function (e) {
         populateDisplay(e.target.id);
         getDisplayValue(e.target.id);
-        if (e.target.id == '+' ||
+        if (e.target.id == 'clr') {
+            firstNumber = null;
+            secondNumber = null;
+            sadržajEkrana.textContent = '';
+            rezultat.textContent = '';
+            displayValue = '';
+            sum = null;
+            operator = null;
+            finalniRezultat.textContent = '';
+        } else {
+            
+        }
+        
+         if (e.target.id == '+' ||
             e.target.id == '-' ||
             e.target.id == '*' ||
             e.target.id == '/') {
@@ -90,13 +103,14 @@ tipke.forEach((tipka) => {
         }
 
         if (e.target.id == '=') {
-            secondNumber = +displayValue; 
+            secondNumber = +displayValue;
             sum = operate(operator, firstNumber, secondNumber);
-            console.log(operator, firstNumber, secondNumber, sum);      
-            rezultat.remove();
-            sadržajEkrana.remove();  
+            console.log(operator, firstNumber, secondNumber, sum);
+            
             finalniRezultat.textContent = sum;
         }
+
+       
     })
 })
 
