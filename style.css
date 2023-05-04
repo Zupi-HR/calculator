@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -12,7 +14,7 @@ body {
     flex-direction: column;
     width: 50%;
     background: none;
-    margin: auto;
+    margin: 20vh auto;
 }
 
 .ekran {
