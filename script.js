@@ -57,6 +57,7 @@ function getDisplayValue(value) {
 
 tipke.forEach((tipka) => {
     tipka.addEventListener('click', function (e) {
+        rezultat.textContent = '';
         populateDisplay(e.target.id);
         getDisplayValue(e.target.id);
         if (e.target.id == 'clr') {
@@ -112,7 +113,6 @@ tipke.forEach((tipka) => {
        
     })
 })
-
 
 
 
