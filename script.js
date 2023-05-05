@@ -86,6 +86,7 @@ tipke.forEach((tipka) => {
                 sadržajEkrana.textContent = '';
                 displayValue = '';
             } else {
+                operator = e.target.id;
                 console.log(`display value je: ${displayValue}, first num je ${firstNumber}, second number je ${secondNumber}`);
                 if (!firstNumber) {
                     firstNumber = +displayValue;
