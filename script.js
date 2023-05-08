@@ -70,31 +70,37 @@ tipke.forEach((tipka) => {
             sum = null;
             operator = null;
 
-        }
+        } 
 
         else if (e.target.id == '+' ||
             e.target.id == '-' ||
             e.target.id == '*' ||
             e.target.id == '/') {
-            if (operator == '=' && displayValue != '') {
+            if (operator == '=') {
+                if (displayValue != '') {
+                    console.log('rezultat se trebao izbrisati, i displayvalue je', displayValue);
+                    firstNumber = +displayValue;
+    
+                    operator = e.target.id;
+                    rezultat.textContent = '';
+                    sadržajEkrana.textContent = '';
+                    displayValue = '';
+                } else {
+                    firstNumber = sum;
+                    operator = e.target.id;
+                }
 
-                console.log('rezultat se trebao izbrisati, i displayvalue je', displayValue);
-                firstNumber = +displayValue;
-
-                operator = e.target.id;
-                rezultat.textContent = '';
-                sadržajEkrana.textContent = '';
-                displayValue = '';
+                
             } else {
-                operator = e.target.id;
+                
                 console.log(`display value je: ${displayValue}, first num je ${firstNumber}, second number je ${secondNumber}`);
                 if (!firstNumber) {
                     firstNumber = +displayValue;
                     console.log(`first number je ${firstNumber}`);
                     sadržajEkrana.textContent = "";
                     displayValue = '';
-                    operator = e.target.id;
                     console.log(operator);
+                    operator = e.target.id;
                 } else {
                     const lokalnioperator = e.target.id;
                     console.log(lokalnioperator);
@@ -132,6 +138,8 @@ tipke.forEach((tipka) => {
             displayValue = '';
 
         }
+
+       
 
 
     })
