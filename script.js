@@ -70,7 +70,7 @@ tipke.forEach((tipka) => {
             sum = null;
             operator = null;
 
-        } 
+        }
 
         else if (e.target.id == '+' ||
             e.target.id == '-' ||
@@ -78,9 +78,7 @@ tipke.forEach((tipka) => {
             e.target.id == '/') {
             if (operator == '=') {
                 if (displayValue != '') {
-                    console.log('rezultat se trebao izbrisati, i displayvalue je', displayValue);
                     firstNumber = +displayValue;
-    
                     operator = e.target.id;
                     rezultat.textContent = '';
                     sadržajEkrana.textContent = '';
@@ -90,10 +88,11 @@ tipke.forEach((tipka) => {
                     operator = e.target.id;
                 }
 
-                
-            } else {
-                
-                console.log(`display value je: ${displayValue}, first num je ${firstNumber}, second number je ${secondNumber}`);
+
+            }
+            else {
+
+                console.log(`display value is: ${displayValue}, first num je ${firstNumber}, second number je ${secondNumber}`);
                 if (!firstNumber) {
                     firstNumber = +displayValue;
                     console.log(`first number je ${firstNumber}`);
@@ -105,18 +104,28 @@ tipke.forEach((tipka) => {
                     const lokalnioperator = e.target.id;
                     console.log(lokalnioperator);
                     secondNumber = +displayValue;
-                    console.log(`drugi broj je: ${secondNumber}`);
-                    sum = operate(operator, firstNumber, secondNumber);
-                    rezultat.textContent = `Rezultat je: ${sum}`;
-                    console.log(`prvi broj: ${firstNumber},drugi ${secondNumber}, sum: ${sum}`);
-                    operator = lokalnioperator;
-                    console.log(`operator u else je ${operator}`);
-                    // sadržajEkrana.textContent = sum;
+                    if (secondNumber == 0 && operator == '/') {
+                        rezultat.textContent = 'Division by zero is undefined';
+                        sadržajEkrana.textContent = '';
+                        firstNumber = null;
+                        secondNumber = null;
+                        displayValue = '';
+                        sum = null;
+                    } else {
+                        console.log(`drugi broj je: ${secondNumber}`);
+                        sum = operate(operator, firstNumber, secondNumber);
+                        rezultat.textContent = `Rezultat je: ${sum}`;
+                        console.log(`first number: ${firstNumber},second ${secondNumber}, sum: ${sum}`);
+                        operator = lokalnioperator;
+                        console.log(`operator is ${operator}`);
+                        // sadržajEkrana.textContent = sum;
 
-                    firstNumber = sum;
+                        firstNumber = sum;
 
-                    sadržajEkrana.textContent = "";
-                    displayValue = '';
+                        sadržajEkrana.textContent = "";
+                        displayValue = '';
+                    }
+
                 }
             }
             /*  if (firstNumber != null && secondNumber != null && sum != null) {
@@ -126,20 +135,29 @@ tipke.forEach((tipka) => {
         }
 
         if (e.target.id == '=') {
-
             secondNumber = +displayValue;
-            sum = operate(operator, firstNumber, secondNumber);
-            console.log(`prvi broj: ${firstNumber},drugi ${secondNumber}, sum: ${sum}`);
-             firstNumber = sum;
-            rezultat.textContent = `Rezultat je: ${sum}`;
-            sadržajEkrana.textContent = '';
-            operator = '=';
-            secondNumber = null;
-            displayValue = '';
+            if (secondNumber == 0 && operator == '/') {
+                rezultat.textContent = 'Division by zero is undefined';
+                sadržajEkrana.textContent = '';
+                firstNumber = null;
+                secondNumber = null;
+                displayValue = '';
+                sum = null;
+            } else {
+                sum = operate(operator, firstNumber, secondNumber);
+                console.log(`prvi broj: ${firstNumber},drugi ${secondNumber}, sum: ${sum}`);
+                firstNumber = sum;
+                rezultat.textContent = `Rezultat je: ${sum}`;
+                sadržajEkrana.textContent = '';
+                operator = '=';
+                secondNumber = null;
+                displayValue = '';
+            }
+
 
         }
 
-       
+
 
 
     })
