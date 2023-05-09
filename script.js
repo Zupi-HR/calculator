@@ -1,14 +1,14 @@
-const ekran = document.querySelector('.ekran');
-let sadržajEkrana = document.querySelector('.sadržajEkrana');
-const tipke = document.querySelectorAll('.tipka');
-let rezultat = document.querySelector('.rezultat');
+const screen = document.querySelector('.screen');
+let screenContent = document.querySelector('.screenContent');
+const buttons = document.querySelectorAll('.button');
+let result = document.querySelector('.result');
 
 let displayValue = '';
 
-let firstNumber;
-let secondNumber;
-let sum;
-let operator;
+let firstNumber = null;
+let secondNumber = null;
+let sum = null;
+let operator = '';
 
 
 function add(num1, num2) {
@@ -46,7 +46,7 @@ function operate(operator, num1, num2) {
 
 
 function populateDisplay(value) {
-    sadržajEkrana.textContent += value.replace(/\D/g, '');
+    screenContent.textContent += value.replace(/\D/g, '');
 
 }
 
@@ -55,34 +55,37 @@ function getDisplayValue(value) {
     //console.log(displayValue);
 }
 
-tipke.forEach((tipka) => {
-    tipka.addEventListener('click', function (e) {
-        rezultat.textContent = '';
+buttons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+        result.textContent = '';
         populateDisplay(e.target.id);
         getDisplayValue(e.target.id);
-        console.log('display value nakon upisivanja', displayValue);
         if (e.target.id == 'clr') {
             firstNumber = null;
             secondNumber = null;
-            sadržajEkrana.textContent = '';
-            rezultat.textContent = '';
-            displayValue = '';
             sum = null;
+            screenContent.textContent = '';
+            result.textContent = '';
+            displayValue = '';
             operator = null;
-
         }
 
         else if (e.target.id == '+' ||
             e.target.id == '-' ||
             e.target.id == '*' ||
-            e.target.id == '/') {
+            e.target.id == '/') {    
             if (operator == '=') {
+
+                //After pressing the equals button, if I press the number buttons, reset everything and start again.
                 if (displayValue != '') {
+                    console.log(displayValue);
                     firstNumber = +displayValue;
                     operator = e.target.id;
-                    rezultat.textContent = '';
-                    sadržajEkrana.textContent = '';
+                    result.textContent = '';
+                    screenContent.textContent = '';
                     displayValue = '';
+
+                 //If I press the operator buttons.   
                 } else {
                     firstNumber = sum;
                     operator = e.target.id;
@@ -91,64 +94,49 @@ tipke.forEach((tipka) => {
 
             }
             else {
-
-                console.log(`display value is: ${displayValue}, first num je ${firstNumber}, second number je ${secondNumber}`);
-                if (!firstNumber) {
+                //Set the first number if it's empty.
+                if (firstNumber == null || firstNumber == '') {
                     firstNumber = +displayValue;
-                    console.log(`first number je ${firstNumber}`);
-                    sadržajEkrana.textContent = "";
+                    screenContent.textContent = "";
                     displayValue = '';
-                    console.log(operator);
                     operator = e.target.id;
                 } else {
-                    const lokalnioperator = e.target.id;
-                    console.log(lokalnioperator);
+                    const localOperator = e.target.id;
                     secondNumber = +displayValue;
                     if (secondNumber == 0 && operator == '/') {
-                        rezultat.textContent = 'Division by zero is undefined';
-                        sadržajEkrana.textContent = '';
+                        result.textContent = 'Division by zero is undefined';
+                        screenContent.textContent = '';
                         firstNumber = null;
                         secondNumber = null;
                         displayValue = '';
                         sum = null;
                     } else {
-                        console.log(`drugi broj je: ${secondNumber}`);
                         sum = operate(operator, firstNumber, secondNumber);
-                        rezultat.textContent = `Rezultat je: ${sum}`;
-                        console.log(`first number: ${firstNumber},second ${secondNumber}, sum: ${sum}`);
-                        operator = lokalnioperator;
-                        console.log(`operator is ${operator}`);
-                        // sadržajEkrana.textContent = sum;
-
+                        result.textContent = `The result is: ${sum}`;
+                        operator = localOperator;
                         firstNumber = sum;
-
-                        sadržajEkrana.textContent = "";
+                        screenContent.textContent = "";
                         displayValue = '';
                     }
 
                 }
             }
-            /*  if (firstNumber != null && secondNumber != null && sum != null) {
-                  rezultat.textContent = `Rezultat je: ${sum}`;
-              }
-              */
         }
 
         if (e.target.id == '=') {
             secondNumber = +displayValue;
             if (secondNumber == 0 && operator == '/') {
-                rezultat.textContent = 'Division by zero is undefined';
-                sadržajEkrana.textContent = '';
+                result.textContent = 'Division by zero is undefined';
+                screenContent.textContent = '';
                 firstNumber = null;
                 secondNumber = null;
                 displayValue = '';
                 sum = null;
             } else {
                 sum = operate(operator, firstNumber, secondNumber);
-                console.log(`prvi broj: ${firstNumber},drugi ${secondNumber}, sum: ${sum}`);
                 firstNumber = sum;
-                rezultat.textContent = `Rezultat je: ${sum}`;
-                sadržajEkrana.textContent = '';
+                result.textContent = `The result is: ${sum}`;
+                screenContent.textContent = '';
                 operator = '=';
                 secondNumber = null;
                 displayValue = '';
@@ -162,5 +150,4 @@ tipke.forEach((tipka) => {
 
     })
 })
-
 

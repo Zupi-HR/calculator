@@ -17,7 +17,7 @@ body {
     margin: 15px auto;
 }
 
-.ekran {
+.screen {
     width: 50%;
     height: 200px;
     background: rgb(182, 179, 179);
@@ -31,20 +31,16 @@ body {
     align-items: center;
 }
 
-.rezultat {
+.result {
     font-size: 30px;
     color: green;
 }
 
-.sadržajEkrana {
+.screenContent {
     font-size: 30px;
 }
-.finalni-rezultat {
-    align-self: center;
-    font-size: 40px;
-}
 
-.container_tipke {
+.buttons {
     margin: auto;
     width: 50%;
     display: flex;
@@ -53,14 +49,14 @@ body {
     gap: 5px;
 }
 
-.redak {
+.row {
     display: flex;
     flex: 0 0 auto;
     gap: 5px;
     justify-content: space-between;
 }
 
-.tipka {
+.button {
     text-align: center;
     font-weight: bold;
     font-size: 30px;
@@ -78,8 +74,8 @@ body {
     text-align: center;
 }
 
-.tipka:hover,
-.tipka:active {
+.button:hover,
+.button:active {
     background: rgb(233, 231, 231);
 }
 
