@@ -7,6 +7,7 @@ let displayValue = '';
 
 let firstNumber = null;
 let secondNumber = null;
+let operateResult = null;
 let sum = null;
 let operator = '';
 
@@ -111,7 +112,8 @@ buttons.forEach((button) => {
                         displayValue = '';
                         sum = null;
                     } else {
-                        sum = operate(operator, firstNumber, secondNumber);
+                        operateResult = operate(operator, firstNumber, secondNumber);
+                        sum = Number.isInteger(operateResult) ? operateResult : +operateResult.toFixed(2);
                         result.textContent = `The result is: ${sum}`;
                         operator = localOperator;
                         firstNumber = sum;
@@ -133,7 +135,9 @@ buttons.forEach((button) => {
                 displayValue = '';
                 sum = null;
             } else {
-                sum = operate(operator, firstNumber, secondNumber);
+                 operateResult = operate(operator, firstNumber, secondNumber);
+                 sum = Number.isInteger(operateResult) ? operateResult : +operateResult.toFixed(2);
+                console.log(sum, typeof(sum));
                 firstNumber = sum;
                 result.textContent = `The result is: ${sum}`;
                 screenContent.textContent = '';
